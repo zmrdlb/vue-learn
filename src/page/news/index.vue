@@ -1,21 +1,24 @@
 <template>
   <div>
-    <header class="head">新闻页面头部</header>
-    <router-view></router-view>
+    <h2>新闻列表</h2>
+    <ul>
+      <li><router-link to="/news/1">新闻1</router-link></li>
+      <li><router-link to="/news/2">新闻2</router-link></li>
+      <li @click="jumpNews(3,'code')"><a>编码方式跳转到新闻列表3</a></li>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'news'
+  name: 'news',
+  methods: {
+    jumpNews(id,type){
+      this.$router.push({name: 'news-detail', params: {id}, query: {type}});
+    }
+  }
 }
 </script>
 
 <style scoped>
-  .head {
-    color: Green;
-    font-size: 1.6rem;
-    text-align: center;
-    line-height: 1.4em;
-  }
 </style>
