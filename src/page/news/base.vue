@@ -1,7 +1,10 @@
 <template>
   <div>
     <header class="head">新闻专题</header>
-    <router-view></router-view>
+    <!--没看到transition的效果-->
+    <transition name="fade" mode="out-in">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
