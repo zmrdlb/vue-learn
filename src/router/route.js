@@ -1,4 +1,4 @@
-import Hello from '@/components/Hello'
+import Hello from '../page/Hello'
 
 //按组懒加载
 const NewsBase = () => import(/* webpackChunkName: "group-news" */ '../page/news/base')

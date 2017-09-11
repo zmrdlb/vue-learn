@@ -22,15 +22,58 @@
     <li><router-link to="/news">新闻</router-link></li>
     <li><router-link to="/user">用户</router-link></li>
     </ul>
+    <h2>vuex状态数据：</h2>
+    <ul>
+      <li>
+        count: {{count}}
+      </li>
+      <li>
+        doneTodosCount: {{doneTodosCount}}
+      </li>
+      <li>
+        <button @click="incrementHandle">count+3</button>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
+import {mapState, mapGetters} from 'vuex'
+
 export default {
   name: 'hello',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  // mapState介绍：https://vuex.vuejs.org/zh-cn/state.html
+  // computed: mapState({
+  //   // 箭头函数可使代码更简练
+  //   count: state => state.count,
+  //
+  //   // 传字符串参数 'count' 等同于 `state => state.count`
+  //   countAlias: 'count',
+  //
+  //   // 为了能够使用 `this` 获取局部状态，必须使用常规函数
+  //   countPlusLocalState (state) {
+  //     return state.count + this.localCount
+  //   }
+  // })
+  computed: {
+    // doneTodosCount(){
+    //   return this.$store.getters.doneTodosCount
+    // },
+    ...mapState([
+      'count'
+    ]),
+    ...mapGetters([
+      'doneTodosCount'
+    ])
+  },
+  methods: {
+    incrementHandle(){
+      this.$store.commit('increment',3);
     }
   }
 }
