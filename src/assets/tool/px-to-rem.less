@@ -1,0 +1,48 @@
+/**
+ * 将 px 尺寸换算成 rem
+ * @author zhangmingrui | 592044573@qq.comv
+ * @example:
+ *    .lib-px-to-rem(padding,36);
+ *    .lib-px-to-rem(padding,18,18);
+ *    .lib-px-to-rem(padding,10,20,10);
+ *    .lib-px-to-rem(padding,12,10,14,16);
+ */
+
+._lib-px-to-rem(@size){
+    @rem-size: unit(@size/@font-size-root,@rem-unit);
+}
+._lib-px-to-rem(@up-down,@left-right){
+    @rem-up-down: unit(@up-down/@font-size-root,@rem-unit);
+    @rem-left-right: unit(@left-right/@font-size-root,@rem-unit);
+}
+._lib-px-to-rem(@up,@left-right,@down){
+    @rem-up: unit(@up/@font-size-root,@rem-unit);
+    @rem-left-right: unit(@left-right/@font-size-root,@rem-unit);
+    @rem-down: unit(@down/@font-size-root,@rem-unit);
+}
+._lib-px-to-rem(@up,@right,@down,@left){
+    @rem-up: unit(@up/@font-size-root,@rem-unit);
+    @rem-right: unit(@right/@font-size-root,@rem-unit);
+    @rem-down: unit(@down/@font-size-root,@rem-unit);
+    @rem-left: unit(@left/@font-size-root,@rem-unit);
+}
+
+.lib-px-to-rem(@cssname,@size) {
+    ._lib-px-to-rem(@size);
+    @{cssname}: @rem-size;
+}
+
+.lib-px-to-rem(@cssname,@up-down,@left-right) {
+    ._lib-px-to-rem(@up-down,@left-right);
+    @{cssname}: @rem-up-down @rem-left-right;
+}
+
+.lib-px-to-rem(@cssname,@up,@left-right,@down) {
+    ._lib-px-to-rem(@up,@left-right,@down);
+    @{cssname}: @rem-up @rem-left-right @rem-down
+}
+
+.lib-px-to-rem(@cssname,@up,@right,@down,@left) {
+    ._lib-px-to-rem(@up,@right,@down,@left);
+    @{cssname}: @rem-up @rem-right @rem-down @rem-left;
+}

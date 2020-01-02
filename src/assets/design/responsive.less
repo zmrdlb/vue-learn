@@ -1,15 +1,10 @@
 /**
- *  页面公共css
- *  @project 业务公共框架
- *  @description 命名空间：.coreui-g-
- *  @version 1.0
+ * 响应式设置
  *  @author zhangmingrui | 592044573@qq.com
- *  @date created 2016-11-02
  */
 
-html,body {
-    height: 100%;
-    font-family: "Microsoft Yahei","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+html {
+    font-size: @font-size-root;
 }
 
 @media only screen and (max-width: 374px) {
@@ -19,7 +14,7 @@ html,body {
 }
 @media only screen and (min-width: 375px) and (max-width: 449px) {
     html {
-        font-size: 20px;
+        font-size: @font-size-root;
     }
 }
 @media only screen and (min-width: 450px) and (max-width: 524px) {
@@ -46,12 +41,4 @@ html,body {
     html {
         font-size: 40px;
     }
-}
-
-body {
-    max-width: 750px;
-    min-width: 320px;
-    font-size: 0.7rem;
-    color: #666;
-    line-height: 1.4;
 }

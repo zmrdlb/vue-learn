@@ -1,21 +1,26 @@
 <template>
-  <div id="app">
-      <img src="./assets/logo.png" style="width: 5rem; height: 5rem;">
+  <div id="app" class="app">
+      <div class="logo-root">
+          <img class="logo" src="./assets/logo.png" style="width: 5rem; height: 5rem;">
+      </div>
       <router-view></router-view>
   </div>
 </template>
 
 <style lang="less">
-@import "./assets/design.less";
+@import "./assets/app.less";
 
-#app {
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60rem / 40;
+.app {
+    .lib-px-to-rem(padding-left,10);
+    .lib-px-to-rem(padding-right,10);
 }
 
-a {
-  color: #42b983;
-  text-decoration: underline;
+.logo-root {
+    text-align: center;
+
+    .logo {
+        .lib-px-to-rem(width,60);
+        .lib-px-to-rem(height,60);
+    }
 }
 </style>

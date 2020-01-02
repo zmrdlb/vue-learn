@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="head">新闻专题</header>
+    <header :class="$style.head">新闻专题</header>
     <!--没看到transition的效果-->
     <transition name="fade" mode="out-in">
       <router-view></router-view>
@@ -14,11 +14,10 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" module>
   .head {
-    color: Green;
-    font-size: 1.6rem;
-    text-align: center;
-    line-height: 1.4em;
+      color: green;
+      .lib-px-to-rem(font-size,32);
+      text-align: center;
   }
 </style>

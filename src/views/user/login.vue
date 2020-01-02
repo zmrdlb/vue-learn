@@ -15,22 +15,22 @@
 <script>
 export default {
   name: 'login',
-  data(){
+  data () {
     return {
       username: '',
       password: ''
     }
   },
-  mounted(){
-    console.log('login mounted');
+  mounted () {
+    console.log('login mounted')
   },
   methods: {
-    loginHandle(){
-      sessionStorage.setItem('userinfo',JSON.stringify({
+    loginHandle () {
+      sessionStorage.setItem('userinfo', JSON.stringify({
         username: this.username,
         password: this.password
-      }));
-      this.$router.replace(this.$route.query.redirect);
+      }))
+      this.$router.replace(this.$route.query.redirect)
     }
   }
 }

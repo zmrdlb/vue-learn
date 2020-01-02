@@ -1,0 +1,29 @@
+/**
+ * 排版
+ * @author zhangmingrui | 592044573@qq.com
+ */
+
+ html,body {
+     height: 100%;
+     font-family: "Microsoft Yahei","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+ }
+
+ body {
+     max-width: 750px;
+     min-width: 320px;
+     .lib-px-to-rem(font-size,@font-size-base);
+     color: @font-color-base;
+     line-height: 1.4;
+ }
+
+ a {
+     color: @a-color;
+ }
+
+ h1 {
+     .lib-px-to-rem(font-size,@title-font-size-one);
+ }
+
+ h2 {
+     .lib-px-to-rem(font-size,@title-font-size-two);
+ }

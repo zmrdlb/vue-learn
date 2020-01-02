@@ -1,6 +1,4 @@
 /*reset.css 统一浏览器基本样式*/
-@import "../variables.less";
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -19,7 +17,7 @@ time, mark, audio, video, button, input, textarea {
 }
 
 button, input, textarea {
-    border: 1px solid @color-border;
+    border: 1px solid @border-color;
 }
 
 button {
@@ -31,4 +29,12 @@ button {
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;
+}
+
+/**
+ * 用来测试 autoprefixer 是否开启。已开启。
+ * development 下，在 <style> 标签里查看。开发者工具，看不到此属性。
+ */
+::placeholder {
+    color: @input-placeholder-color;
 }

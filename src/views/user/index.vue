@@ -12,11 +12,11 @@
 <script>
 export default {
   name: 'user',
-  data(){
+  data () {
     return JSON.parse(sessionStorage.getItem('userinfo'))
   },
-  mounted(){
-    console.log('user-index mounted');
+  mounted () {
+    console.log('user-index mounted')
   }
 }
 </script>
