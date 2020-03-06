@@ -7,7 +7,7 @@
       <label>密码：</label><input type="password" v-model="password" autocomplete="off" placeholder="请输入密码" />
     </div>
     <div>
-      <button @click="loginHandle">登录</button>
+      <button class="primary" @click="loginHandle">登录</button>
     </div>
   </div>
 </template>

@@ -1,0 +1,94 @@
+/**
+ * form 表单
+ * @author zmrdlb | 592044573@qq.com
+ */
+
+@form-ruleset: {
+
+    /**
+     * 通过 padding 设置尺寸。适用于 input textarea
+     */
+
+    .padding(@_padding: @form-input-padding){
+        padding: @_padding;
+    }
+
+    .padding-lg(@_padding-lg: @form-input-lg-padding) {
+        padding: @_padding-lg;
+    }
+
+    .padding-sm(@_padding-sm: @form-input-sm-padding) {
+        padding: @_padding-sm;
+    }
+
+    .padding-size(
+        @_padding: @form-input-padding,
+        @_padding-lg: @form-input-lg-padding,
+        @_padding-sm: @form-input-sm-padding
+    ) {
+        .padding(@_padding);
+
+        /**
+         * 大尺寸
+         */
+        &.lg {
+            .padding-lg(@_padding-lg);
+        }
+
+        /**
+         * 小尺寸
+         */
+
+        &.sm {
+            .padding-sm(@_padding-sm);
+        }
+    }
+
+    /**
+     * 通过 height 设置尺寸。适用于 select
+     */
+
+    .height(){
+        height: @form-height;
+    }
+
+    .height-lg() {
+        height: @form-lg-height;
+    }
+
+    .height-sm() {
+        height: @form-sm-height;
+    }
+
+    .height-size() {
+        box-sizing: border-box;
+        .height();
+
+        /**
+         * 大尺寸
+         */
+        &.lg {
+            .height-lg();
+        }
+
+        /**
+         * 小尺寸
+         */
+
+        &.sm {
+            .height-sm();
+        }
+    }
+
+    /**
+     * 大尺寸字体相关设置
+     */
+
+    .font-lg(@_color) {
+
+        &.lg {
+            @font-ruleset();
+            .head-three(@_color);
+        }
+    }
+}

@@ -1,0 +1,75 @@
+/**
+ * 页面排版
+ * @author zmrdlb | 592044573@qq.com
+ */
+
+ /**
+  * 字体相关 ruleset
+  */
+
+ @font-ruleset: {
+
+     // 正文
+
+     .text(@_color: @font-color) {
+        font-size: @font-size;
+      	line-height: @font-line-height;
+        color: @_color;
+     }
+
+     // 标题
+
+     ._head(@_color) {
+         color: @_color;
+     }
+
+     // 一级标题
+
+     .head-one(@_color: @font-head-color) {
+         ._head(@_color);
+         font-size: @font-head-one-size;
+         line-height: @font-head-one-line-height;
+     }
+
+     // 二级标题
+
+     .head-two(@_color: @font-head-color) {
+         ._head(@_color);
+         font-size: @font-head-two-size;
+         line-height: @font-head-two-line-height;
+     }
+
+     // 三级标题
+
+     .head-three(@_color: @font-head-color) {
+         ._head(@_color);
+         font-size: @font-head-three-size;
+         line-height: @font-head-three-line-height;
+     }
+
+     // 说明字
+
+     .tip(@_color: @font-tip-color) {
+         color: @_color;
+         font-size: @font-tip-size;
+         line-height: @font-tip-line-height;
+     }
+
+     // 链接
+
+     .a() {
+         color: @font-a-color;
+         font-size: @font-a-size;
+         line-height: @font-a-line-height;
+         text-decoration: none;
+         cursor: pointer;
+
+         &.disabled {
+            cursor: default;
+         }
+
+         &:hover {
+             color: @font-a-color-hover;
+         }
+     }
+ }

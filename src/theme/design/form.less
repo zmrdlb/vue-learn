@@ -1,0 +1,97 @@
+/**
+ * form 表单
+ * @author zmrdlb | 592044573@qq.com
+ */
+
+@form-ruleset();
+
+ //
+ //  form 表单元素通用设置
+ //  ---------------------------------------------
+
+ input,select,textarea {
+     outline: none;
+     border-width: 1px;
+     border-style: solid;
+     border-radius: @form-elem-border-radius;
+
+     .lib-placeholder-color(@form-elem-placeholder-color);
+
+     &:not(:disabled):not(.disabled) {
+         &:focus {
+             border-color: @form-elem-border-color-focus;
+         }
+
+         // 错误
+         &.error {
+             border-color: @form-elem-border-color-error;
+         }
+     }
+
+     /**
+      * 禁用状态
+      */
+
+     &:disabled, &.disabled {
+         // 错误
+         &.error {
+             border-color: @form-elem-border-color-error;
+         }
+     }
+ }
+
+ //
+ //  input select textarea
+ //  ---------------------------------------------
+
+ input,select,textarea {
+     @font-ruleset();
+     .text(@form-input-color);
+     .font-lg(@form-input-color);
+
+     /**
+      * 可用状态
+      */
+
+     &:not(:disabled):not(.disabled) {
+         cursor: pointer;
+         border-color: @form-input-border-color;
+         background-color: @form-input-bg-color;
+     }
+
+     /**
+      * 禁用状态
+      */
+
+     &:disabled, &.disabled {
+         cursor: not-allowed;
+         color: @form-input-color-disabled;
+         background-color: @form-input-bg-color-disabled;
+     }
+ }
+
+ input,textarea {
+     .padding-size();
+ }
+
+ /**
+  * select 设置 padding 无效。所以此处设置成高度
+  */
+ select {
+     .height-size();
+ }
+
+ //
+ //  label
+ //  ---------------------------------------------
+
+ label {
+     @font-ruleset();
+     .text(@form-label-color);
+     .padding-size(
+         @_padding: @form-label-padding,
+         @_padding-lg: @form-label-lg-padding,
+         @_padding-sm: @form-label-sm-padding
+     );
+     .font-lg(@form-label-color);
+ }

@@ -1,0 +1,195 @@
+/**
+ * 按钮 ruleset
+ * @author zmrdlb | 592044573@qq.com
+ */
+
+@button-ruleset: {
+
+    //
+    //  button
+    //  ---------------------------------------------
+
+    .button() {
+        @font-ruleset();
+        .text();
+
+        border-width: 1px;
+        border-style: solid;
+        border-radius: @button-border-radius;
+        padding: @button-padding;
+
+        /**
+         * 大尺寸
+         */
+        &.lg {
+            .head-three(@button-primary-color);
+            padding: @button-lg-padding;
+        }
+
+        /**
+         * 小尺寸
+         */
+
+        &.sm {
+            padding: @button-sm-padding;
+        }
+
+        /**
+         * 可用状态
+         */
+
+        &:not(:disabled):not(.disabled) {
+            cursor: pointer;
+        }
+
+        /**
+         * 禁用状态
+         */
+
+        &:disabled, &.disabled {
+            cursor: not-allowed;
+        }
+    }
+
+    //
+    //  实心按钮
+    //  默认主色调：蓝色
+    //  ---------------------------------------------
+
+    .button-solid(
+        @_color: @button-primary-color,
+        @_bg-color: @button-primary-bg-color,
+        @_border-color: @button-primary-bg-color,
+
+        @_bg-color-hover: @button-primary-bg-color-hover,
+        @_border-color-hover: @button-primary-bg-color-hover,
+
+        @_bg-color-active: @button-primary-bg-color-active,
+        @_border-color-active: @button-primary-bg-color-active,
+
+        @_color-disabled: @button-primary-color-disabled,
+        @_bg-color-disabled: @button-primary-bg-color-disabled,
+        @_border-color-disabled: @button-primary-bg-color-disabled
+    ) {
+
+        /**
+         * 可用状态
+         */
+
+        &:not(:disabled):not(.disabled) {
+            color: @_color;
+            background-color: @_bg-color;
+            border-color: @_border-color;
+
+            &:hover {
+                background-color: @_bg-color-hover;
+                border-color: @_border-color-hover;
+            }
+
+            &:active {
+                background-color: @_bg-color-active;
+                border-color: @_border-color-active;
+            }
+
+        }
+
+        /**
+         * 禁用状态
+         */
+
+        &:disabled, &.disabled {
+            color: @_color-disabled;
+            background-color: @_bg-color-disabled;
+            border-color: @_border-color-disabled;
+        }
+    }
+
+    //
+    //  空心按钮
+    //  默认主色调 - 灰色
+    //  ---------------------------------------------
+
+    .button-hollow(
+        @_color: @button-secondary-color,
+        @_bg-color: @button-secondary-bg-color,
+        @_border-color: @button-secondary-border-color,
+
+        @_color-hover: @button-secondary-color-hover,
+        @_bg-color-hover: @button-secondary-bg-color-hover,
+        @_border-color-hover: @button-secondary-border-color-hover,
+
+        @_color-active: @button-secondary-color-active,
+        @_bg-color-active: @button-secondary-bg-color-active,
+        @_border-color-active: @button-secondary-border-color-active,
+
+        @_color-disabled: @button-secondary-color-disabled,
+        @_bg-color-disabled: @button-secondary-bg-color-disabled,
+        @_border-color-disabled: @button-secondary-border-color-disabled
+    ) {
+
+        /**
+         * 可用状态
+         */
+
+        &:not(:disabled):not(.disabled) {
+            color: @_color;
+            background-color: @_bg-color;
+            border-color: @_border-color;
+
+            &:hover {
+                color: @_color-hover;
+                background-color: @_bg-color-hover;
+                border-color: @_border-color-hover;
+            }
+
+            &:active {
+                color: @_color-active;
+                background-color: @_bg-color-active;
+                border-color: @_border-color-active;
+            }
+        }
+
+        /**
+         * 禁用状态
+         */
+
+        &:disabled, &.disabled {
+            color: @_color-disabled;
+            background-color: @_bg-color-disabled;
+            border-color: @_border-color-disabled;
+        }
+    }
+
+    /**
+     * 按钮遮罩
+     */
+    ._button-mask(){
+       position: relative;
+       cursor: default;
+       &::before {
+         content: '';
+         display: block;
+         position: absolute;
+         top: 0;
+         bottom: 0;
+         left: 0;
+         right: 0;
+         background-color: rgba(255,255,255,0.8);
+         margin: -1px;
+       }
+    }
+
+    /**
+     * 给按钮添加 loading
+     */
+    .loading(){
+        ._button-mask();
+        &::before {
+          background: url('../images/loader-circle.svg') no-repeat center;
+          background-size: 1rem 1rem;
+          box-shadow: 0 0 .6rem .05rem @border-color;
+          border: .05rem solid @border-color;
+        }
+        cursor: default;
+    }
+}

@@ -1,14 +1,14 @@
 <template>
   <div id="app" class="app">
       <div class="logo-root">
-          <img class="logo" src="./assets/logo.png" style="width: 5rem; height: 5rem;">
+          <img class="logo" src="./theme/logo.png">
       </div>
       <router-view></router-view>
   </div>
 </template>
 
 <style lang="less">
-@import "./assets/app.less";
+@import "./theme/index.less";
 
 .app {
     .lib-px-to-rem(padding-left,10);

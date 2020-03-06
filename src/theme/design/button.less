@@ -1,0 +1,153 @@
+/**
+ * 按钮样式
+ * @author zmrdlb | 592044573@qq.com
+ */
+
+ @button-ruleset();
+
+ //
+ //  button
+ //  ---------------------------------------------
+
+ button {
+     .button();
+ }
+
+ //
+ //  primary button
+ //  ---------------------------------------------
+
+ button.primary {
+     .button-solid();
+
+     /**
+      * 红色按钮
+      */
+
+     &.red {
+         .button-solid(
+             @_bg-color: @button-primary-red-bg-color,
+             @_border-color: @button-primary-red-bg-color,
+
+             @_bg-color-hover: @button-primary-red-bg-color-hover,
+             @_border-color-hover: @button-primary-red-bg-color-hover,
+
+             @_bg-color-active: @button-primary-red-bg-color-active,
+             @_border-color-active: @button-primary-red-bg-color-active
+         );
+     }
+
+     /**
+      * 绿色按钮
+      */
+
+     &.green {
+         .button-solid(
+             @_bg-color: @button-primary-green-bg-color,
+             @_border-color: @button-primary-green-bg-color,
+
+             @_bg-color-hover: @button-primary-green-bg-color-hover,
+             @_border-color-hover: @button-primary-green-bg-color-hover,
+
+             @_bg-color-active: @button-primary-green-bg-color-active,
+             @_border-color-active: @button-primary-green-bg-color-active
+         );
+     }
+
+     /**
+      * 黄色按钮
+      */
+
+     &.yellow {
+         .button-solid(
+             @_bg-color: @button-primary-yellow-bg-color,
+             @_border-color: @button-primary-yellow-bg-color,
+
+             @_bg-color-hover: @button-primary-yellow-bg-color-hover,
+             @_border-color-hover: @button-primary-yellow-bg-color-hover,
+
+             @_bg-color-active: @button-primary-yellow-bg-color-active,
+             @_border-color-active: @button-primary-yellow-bg-color-active
+         );
+     }
+ }
+
+ //
+ //  secondary button
+ //  ---------------------------------------------
+
+ button.secondary {
+     .button-hollow();
+
+     /**
+      * 红色按钮
+      */
+
+     &.red {
+         .button-hollow(
+             @_color: @button-secondary-red-color,
+             @_bg-color: @button-secondary-red-bg-color,
+             @_border-color: @button-secondary-red-border-color,
+
+             @_color-hover: @button-secondary-red-color-hover,
+             @_bg-color-hover: @button-secondary-red-bg-color-hover,
+             @_border-color-hover: @button-secondary-red-border-color-hover,
+
+             @_color-active: @button-secondary-red-color-active,
+             @_bg-color-active: @button-secondary-red-bg-color-active,
+             @_border-color-active: @button-secondary-red-border-color-active
+         );
+     }
+
+     /**
+      * 绿色按钮
+      */
+
+     &.green {
+         .button-hollow(
+             @_color: @button-secondary-green-color,
+             @_bg-color: @button-secondary-green-bg-color,
+             @_border-color: @button-secondary-green-border-color,
+
+             @_color-hover: @button-secondary-green-color-hover,
+             @_bg-color-hover: @button-secondary-green-bg-color-hover,
+             @_border-color-hover: @button-secondary-green-border-color-hover,
+
+             @_color-active: @button-secondary-green-color-active,
+             @_bg-color-active: @button-secondary-green-bg-color-active,
+             @_border-color-active: @button-secondary-green-border-color-active
+         );
+     }
+
+     /**
+      * 黄色按钮
+      */
+
+     &.yellow {
+         .button-hollow(
+             @_color: @button-secondary-yellow-color,
+             @_bg-color: @button-secondary-yellow-bg-color,
+             @_border-color: @button-secondary-yellow-border-color,
+
+             @_color-hover: @button-secondary-yellow-color-hover,
+             @_bg-color-hover: @button-secondary-yellow-bg-color-hover,
+             @_border-color-hover: @button-secondary-yellow-border-color-hover,
+
+             @_color-active: @button-secondary-yellow-color-active,
+             @_bg-color-active: @button-secondary-yellow-bg-color-active,
+             @_border-color-active: @button-secondary-yellow-border-color-active
+         );
+     }
+ }
+
+ //
+ //  数据交互态 button 样式
+ //  ---------------------------------------------
+
+
+ /**
+  * 给button增加loading提示
+  */
+ button.loading {
+     .loading();
+ }

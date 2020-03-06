@@ -17,7 +17,7 @@
             doneTodosCount: {{doneTodosCount}}
           </li>
           <li>
-            <button @click="incrementHandle">count+3</button>
+            <button class="primary" @click="incrementHandle">count+3</button>
           </li>
         </ul>
     </section>

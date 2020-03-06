@@ -1,0 +1,79 @@
+/**
+ * 小工具
+ * @author zmrdlb | 592044573@qq.com
+ */
+
+ /**
+  * 清除浮动
+  */
+ .lib-clearfix() {
+     &:before,
+     &:after {
+         content: '';
+         display: table;
+     }
+
+     &:after {
+         clear: both;
+     }
+ }
+
+ /*不折行*/
+ .lib-nobreak-line(){
+   white-space: nowrap;
+ }
+ /*折行*/
+ .lib-break-line() {
+   white-space: normal;
+   word-wrap: break-word;
+   word-break: break-all;
+ }
+
+ .lib-break-line-all-word() {
+   white-space: normal;
+   word-wrap: break-word;
+ }
+ /*多行超出显示省略号——css3——webkit内核支持*/
+ .lib-multi-ellipsis(@line:1) {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: @line;
+   -webkit-box-orient: vertical;
+ }
+ /*单行超出显示省略号——css3*/
+ .lib-single-ellipsis() {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+ }
+ /**
+  *   @section 针对某些情况下，行高不生效。
+  *   原理：决定行高的是行内最高的元素的值。
+  */
+ .lib-line-height(){
+     &:before {
+         content: '';
+         display: inline-block;
+         height: 100%;
+         vertical-align: middle;
+     }
+ }
+ /**
+  *   给placeholder设置颜色
+  */
+ .lib-placeholder-color(@color) {
+     &::-moz-placeholder {
+         color: @color;
+     }
+     &::-webkit-input-placeholder {
+         color: @color;
+     }
+     &:-ms-input-placeholder {
+         color: @color;
+     }
+     // 去掉 gl > ie 10 清楚文本的 X
+     &::-ms-clear {
+         display: none;
+     }
+ }
