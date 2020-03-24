@@ -1,16 +1,23 @@
 /**
- * 排版
- * @author zhangmingrui | 592044573@qq.com
+ * 页面排版
+ * @author zmrdlb | 592044573@qq.com
  */
 
- @font-ruleset();
+ body{
+    @font-ruleset();
+    .text();
+    font-family: @font-family;
+    font-style: normal;
+    font-weight: 400;
+ }
 
  //
  //  链接
  //  ---------------------------------------------
 
- a, .alink {
-   .a();
+ a {
+    @font-ruleset();
+    .a();
  }
 
  //
@@ -18,13 +25,33 @@
  //  ---------------------------------------------
 
  .tip {
+     @font-ruleset();
      .tip();
  }
 
+ //
+ //  一级标题
+ //  ---------------------------------------------
+
  h1 {
+     @font-ruleset();
      .head-one();
  }
 
+ //
+ //  二级标题
+ //  ---------------------------------------------
+
  h2 {
+     @font-ruleset();
      .head-two();
+ }
+
+ //
+ //  三级标题
+ //  ---------------------------------------------
+
+ h3 {
+     @font-ruleset();
+     .head-three();
  }

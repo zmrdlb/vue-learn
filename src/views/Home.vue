@@ -7,6 +7,7 @@
         <ul>
         <li><router-link to="/news">新闻</router-link></li>
         <li><router-link to="/user">用户</router-link></li>
+        <li><router-link :to="{ name: 'ued-index'}">ued设计demo</router-link></li>
         </ul>
         <h2>vuex状态数据：</h2>
         <ul>

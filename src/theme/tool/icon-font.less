@@ -1,0 +1,60 @@
+/**
+ * icon font 定义
+ * @author zmrdlb | 592044573@qq.com
+ */
+
+ //
+ //  google icon
+ //  ---------------------------------------------
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../font/material/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+         local('MaterialIcons-Regular'),
+         url(../font/material/MaterialIcons-Regular.woff2) format('woff2'),
+         url(../font/material/MaterialIcons-Regular.woff) format('woff'),
+         url(../font/material/MaterialIcons-Regular.ttf) format('truetype'),
+         url(../font/material/MaterialIcons-Regular.svg) format('svg');
+}
+
+@material-icon-ruleset: {
+    .icon-font(
+        @_font-size: 24px,
+        @_color: @color-gray1
+    ) {
+        /* use !important to prevent issues with browser extensions that change fonts */
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: @_font-size;  /* Preferred icon size */
+        color: @_color;
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+
+        /* Support for all WebKit browsers. */
+        -webkit-font-smoothing: antialiased;
+        /* Support for Safari and Chrome. */
+        text-rendering: optimizeLegibility;
+
+        /* Support for Firefox. */
+        -moz-osx-font-smoothing: grayscale;
+
+        /* Support for IE. */
+        font-feature-settings: 'liga';
+    }
+
+    // 关闭
+    .close() {
+        &::before {
+            content: "close"; //\e5cd
+        }
+    }
+}

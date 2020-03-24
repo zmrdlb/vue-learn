@@ -13,6 +13,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'login',
   data () {
@@ -26,11 +27,22 @@ export default {
   },
   methods: {
     loginHandle () {
-      sessionStorage.setItem('userinfo', JSON.stringify({
-        username: this.username,
-        password: this.password
-      }))
-      this.$router.replace(this.$route.query.redirect)
+        if(!this.username || !this.password){
+            this.$alert({
+                tip: '请输入用户名或密码',
+                ok: {
+                    handler(e){
+                        console.log('点击了确定');
+                    }
+                }
+            })
+        }else{
+            sessionStorage.setItem('userinfo', JSON.stringify({
+              username: this.username,
+              password: this.password
+            }))
+            this.$router.replace(this.$route.query.redirect)
+        }
     }
   }
 }

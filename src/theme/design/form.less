@@ -3,8 +3,6 @@
  * @author zmrdlb | 592044573@qq.com
  */
 
-@form-ruleset();
-
  //
  //  form 表单元素通用设置
  //  ---------------------------------------------
@@ -46,6 +44,7 @@
 
  input,select,textarea {
      @font-ruleset();
+     @form-ruleset();
      .text(@form-input-color);
      .font-lg(@form-input-color);
 
@@ -71,6 +70,7 @@
  }
 
  input,textarea {
+      @form-ruleset();
      .padding-size();
  }
 
@@ -78,6 +78,7 @@
   * select 设置 padding 无效。所以此处设置成高度
   */
  select {
+      @form-ruleset();
      .height-size();
  }
 
@@ -87,6 +88,7 @@
 
  label {
      @font-ruleset();
+     @form-ruleset();
      .text(@form-label-color);
      .padding-size(
          @_padding: @form-label-padding,
