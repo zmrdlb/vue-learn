@@ -2,16 +2,21 @@
     <ui-modal
         ref="modal"
         name="ui-modal-alert"
-        :classes="['g-warning','g-alert']"
+        :classes="['g-warning','g-infor']"
         :has-footer="true"
         @before-open="onBeforeOpen"
         @before-close="onBeforeClose">
         <template v-slot:body="{params}">
-            <div class="tip-title" v-if="params.tip">
-                {{params.tip}}
+            <div class="left">
+                <div :class="['type-icon', params.inforType || 'infor']"></div>
             </div>
-            <div class="tip-content" v-if="params.desc">
-                {{params.desc}}
+            <div class="right">
+                <div class="tip-title" v-if="params.tip">
+                    {{params.tip}}
+                </div>
+                <div class="tip-content" v-if="params.desc">
+                    {{params.desc}}
+                </div>
             </div>
         </template>
         <template v-slot:footer="{params}">
@@ -34,7 +39,7 @@ export default {
             params: {}
         }
     },
-    mixins: [modalMixin],
+    mixins: [modalMixin.inforModalMixin],
     components: {
         UiModal
     },

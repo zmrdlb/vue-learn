@@ -102,6 +102,7 @@ export default {
         }
 
         & > .body {
+            overflow-y: auto;
             .lib-px-to-rem(padding,20);
         }
 
@@ -130,18 +131,55 @@ export default {
     }
 
     /**
-     * 警告弹层。用于 alert, confirm
+     * 信息弹层。用于 alert, confirm
      */
-    .g-warning {
+    .g-infor {
 
         & > .body {
-            overflow-y: auto;
-
             @font-ruleset();
+            .lib-clearfix();
+
+            .left {
+                float: left;
+            }
+
+            .right {
+                .lib-px-to-rem(margin-left,60);
+            }
+
+            .type-icon {
+                display: inline-block;
+                vertical-align: middle;
+                .lib-px-to-rem(width,45);
+                .lib-px-to-rem(height,45);
+                background: @color-white url("images/icons_message90*90@2x.png") no-repeat;
+                background-size: 500% 100%;
+
+                &.success {
+                    background-position: 0 0;
+                }
+
+                &.infor {
+                    .lib-px-to-rem(background-position,-45,0);
+                }
+
+                &.fail {
+                    .lib-px-to-rem(background-position,-90,0);
+                }
+
+                &.warning {
+                    .lib-px-to-rem(background-position,-135,0);
+                }
+
+                &.ask {
+                    .lib-px-to-rem(background-position,-180,0);
+                }
+            }
 
             .tip-title {
                 .head-three();
                 .lib-px-to-rem(margin-bottom,2);
+                .lib-px-to-rem(margin-top,-4);
             }
 
             .tip-content {

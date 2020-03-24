@@ -12,6 +12,7 @@ const ModalPlugin = {
          * @param  {Object} params  Alert params
          * 可传的格式如下：(均可选)
          * {
+         *   inforType: 'infor',
              tip: 'alert提示信息',
              desc: 'alert提示信息描述',
              ok: {
