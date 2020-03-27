@@ -8,6 +8,19 @@
             </select>
         </div>
         <button class="primary" @click="onAlert">alert弹层</button>
+
+        <h3>全局loading - 超过 200ms 才显示</h3>
+        <button class="primary" @click="onLoading">全局loading</button>
+        <p class="tip">
+            出于测试，1s 后代码控制隐藏 loading
+        </p>
+
+        <h3>toast</h3>
+        <div>
+            <label>toast消息：</label>
+            <input type="text" v-model="toastMsg" />
+        </div>
+        <button class="primary" @click="onToast">Toast提示</button>
     </div>
 </template>
 
@@ -16,10 +29,14 @@ export default {
     name: 'ued-modal',
     data(){
         return {
+            toastMsg: '',
             inforType: 'infor',
             inforTypeOptions: ['success','infor','fail','warning','ask']
         }
     },
+    // mounted(){
+    //     window.test = this.$loading
+    // },
     methods: {
         /**
          * alert。这里列出了所有参数，这些都可选。
@@ -43,6 +60,15 @@ export default {
                     console.log('alert beforeClose',e);
                 }
             })
+        },
+        onLoading(){
+            this.$loading.show();
+            setTimeout(() => {
+                this.$loading.hide();
+            },1000)
+        },
+        onToast(){
+            this.$toast(this.toastMsg);
         }
     }
 }

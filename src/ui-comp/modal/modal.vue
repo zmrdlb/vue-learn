@@ -133,7 +133,7 @@ export default {
     /**
      * 信息弹层。用于 alert, confirm
      */
-    .g-infor {
+    .g-modal-infor {
 
         & > .body {
             @font-ruleset();
@@ -187,6 +187,11 @@ export default {
                 .lib-break-line-all-word();
             }
         }
+    }
 
+    .g-modal-infor {
+        .lib-responsive-pc({
+            width: 400px;
+        })
     }
 </style>

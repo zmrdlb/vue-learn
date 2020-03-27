@@ -1,7 +1,7 @@
 <template>
   <div>
     <header :class="$style.head">新闻专题</header>
-    <transition name="view-fade" mode="out-in">
+    <transition name="view-slide" mode="out-in">
       <router-view></router-view>
     </transition>
   </div>
@@ -22,13 +22,13 @@ export default {
 </style>
 
 <style lang="less" scoped>
-    .view-fade-enter,.view-fade-leave-to {
+    .view-slide-enter,.view-slide-leave-to {
         transform: translateX(100%);
     }
-    .view-fade-enter-to,.view-fade-leave {
+    .view-slide-enter-to,.view-slide-leave {
         transform: translateX(0);
     }
-    .view-fade-enter-active,.view-fade-leave-active {
+    .view-slide-enter-active,.view-slide-leave-active {
         transition: transform .5s;
     }
 </style>

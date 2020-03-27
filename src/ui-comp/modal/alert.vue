@@ -1,8 +1,8 @@
 <template>
     <ui-modal
         ref="modal"
-        name="ui-modal-alert"
-        :classes="['g-warning','g-infor']"
+        :name="modalName"
+        :classes="['g-modal-infor']"
         :has-footer="true"
         @before-open="onBeforeOpen"
         @before-close="onBeforeClose">
@@ -32,8 +32,10 @@ import extend from 'extend'
 import modalMixin from './modal-mixin'
 import UiModal from './modal.vue'
 
+const modalName = 'ui-modal-alert';
+
 export default {
-    name: 'ui-modal-alert',
+    name: modalName,
     data(){
         return {
             params: {}
@@ -51,6 +53,9 @@ export default {
             },this.params.ok)
         }
     },
+    created(){
+        this.modalName = modalName;
+    },
     methods: {
         // 点击确定按钮
         onOk(e){
@@ -63,13 +68,3 @@ export default {
 }
 
 </script>
-
-<style lang="less">
-
-    .g-alert {
-        .lib-responsive-pc({
-            width: 400px;
-        })
-    }
-
-</style>
