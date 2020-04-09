@@ -1,7 +1,6 @@
 <template>
     <ui-modal
-        ref="modal"
-        :name="modalName"
+        :modalName="modalName"
         :classes="['g-modal-infor']"
         :has-footer="true"
         @before-open="onBeforeOpen"
@@ -41,7 +40,7 @@ export default {
             params: {}
         }
     },
-    mixins: [modalMixin.inforModalMixin],
+    mixins: [modalMixin.modalMixin,modalMixin.inforModalMixin],
     components: {
         UiModal
     },
@@ -62,7 +61,7 @@ export default {
             if(isFunction(this.ok.handler)){
                 this.ok.handler(e);
             }
-            this.$refs.modal.close();
+            this.close();
         }
     }
 }

@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import WorkerController from '@/lib/pattern/worker-controller'
-import {generateId} from '@/lib/util/uid'
+import WorkerController from '@lib/pattern/worker-controller'
+import {generateId} from '@lib/util/uid'
 
 export default {
     name: 'ui-modal-loading',

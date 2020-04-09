@@ -1,9 +1,9 @@
 <template>
     <modal
-        :name="name"
-        width="100%"
-        height="auto"
-        classes=""
+        :name="modalName"
+        :width="modalWidth"
+        :height="modalHeight"
+        :classes="[modalClasses]"
         @before-open="onBeforeOpen"
         @before-close="onBeforeClose">
         <div :class="['g-modal',classes]">
@@ -22,13 +22,29 @@
 
 <script>
 
+import modalMixin from './modal-mixin'
+
 export default {
     name: 'ui-modal',
     props: {
-        name: {
+        // vue-js-modal 属性
+        modalName: {
             type: String,
             required: true
         },
+        modalClasses: {
+            type: [String, Array],
+            default: ''
+        },
+        modalWidth: {
+            type: String,
+            default: '100%'
+        },
+        modalHeight: {
+            type: String,
+            default: 'auto'
+        },
+        // 自定义 modal 属性
         hasTitle: {
             type: Boolean,
             default: false
@@ -47,11 +63,8 @@ export default {
             params: {}
         }
     },
+    mixins: [modalMixin.modalMixin],
     methods: {
-        // 关闭弹层。弹层也会被销毁
-        close(){
-            this.$modal.hide(this.name);
-        },
         onClose(){
             this.close();
         },
@@ -78,7 +91,7 @@ export default {
         box-shadow: @box-shadow2;
         width: 90%;
         min-width: 0;
-        max-width: 400px;
+        max-width: 700px;
         margin-left: auto;
         margin-right: auto;
         display: flex;
@@ -115,7 +128,7 @@ export default {
                  float: right;
                  .lib-px-to-rem(margin-right,5);
 
-                 &:last-child {
+                 &:first-child {
                      margin-right: 0;
                  }
              }
@@ -134,6 +147,7 @@ export default {
      * 信息弹层。用于 alert, confirm
      */
     .g-modal-infor {
+        max-width: 400px;
 
         & > .body {
             @font-ruleset();

@@ -31,7 +31,7 @@ import Vue from 'vue'
 import { mapState, mapGetters } from 'vuex'
 import Component from 'vue-class-component'
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'// @ is an alias to /src
+import HelloWorld from '@comp/HelloWorld.vue'// @ is an alias to /src
 
 @Component({
   // Vue component 本身的 name option

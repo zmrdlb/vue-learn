@@ -3,6 +3,7 @@
         <ui-toast ref="toast"></ui-toast>
         <ui-loading ref="loading"></ui-loading>
         <ui-alert ref="alert"></ui-alert>
+        <ui-confirm ref="confirm"></ui-confirm>
     </div>
 </template>
 
@@ -13,13 +14,15 @@ import Vue from 'vue'
 import UiToast from './toast.vue'
 import UiLoading from './loading.vue'
 import UiAlert from './alert.vue'
+import UiConfirm from './confirm.vue'
 
 export default {
     name: 'ui-modal-index',
     components: {
-        UiAlert,
         UiLoading,
-        UiToast
+        UiToast,
+        UiAlert,
+        UiConfirm
     },
     mounted(){
         let _this = this;
@@ -51,7 +54,7 @@ export default {
                  ok: {
                      label: '确定',
                      handler(e: object){
-                         console.log('点击了ok',e,params);
+                         console.log('点击了确定',e);
                      }
                  },
                  beforeOpen(e: object){},
@@ -59,7 +62,35 @@ export default {
              }
              */
             $alert(params){
-                this.$modal.show(_this.$refs.alert.modalName, params)
+                _this.$refs.alert.show(params)
+            },
+
+            /**
+             * 显示 confirm 弹层。
+             * @param  {Object} params  Confirm params
+             * 可传的格式如下：(均可选)
+             * {
+             *   inforType: 'infor',
+                 tip: 'confirm提示信息',
+                 desc: 'confirm提示信息描述',
+                 ok: {
+                     label: '确定',
+                     handler(e: object){
+                         console.log('点击了确定',e);
+                     }
+                 },
+                 cancel: {
+                     label: '取消',
+                     handler(e: object){
+                         console.log('点击了取消',e);
+                     }
+                 },
+                 beforeOpen(e: object){},
+                 beforeClose(e: object){}
+             }
+             */
+            $confirm(params){
+                _this.$refs.confirm.show(params)
             },
 
             $toast(msg){

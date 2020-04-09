@@ -7,7 +7,7 @@
 
 <script>
     import debounce from "lodash/debounce";
-    import UiModalIndex from "@/ui-comp/modal/index.vue";
+    import UiModalIndex from "@ui-comp/modal/index.vue";
 
     export default {
         name: 'app',

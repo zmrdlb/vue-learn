@@ -1,6 +1,10 @@
 <template>
     <div>
         <h3>信息弹层</h3>
+        <p class="tip">
+            为了说明，调用 alert 和 confirm 时，给出了全部的参数。事实上，都是可选的。
+            一般只需传入 inforType,tip,desc 即可。
+        </p>
         <div>
             <label>信息弹层类型：</label>
             <select v-model="inforType">
@@ -8,6 +12,7 @@
             </select>
         </div>
         <button class="primary" @click="onAlert">alert弹层</button>
+        <button class="primary green" @click="onConfirm">confirm弹层</button>
 
         <h3>全局loading - 超过 200ms 才显示</h3>
         <button class="primary" @click="onLoading">全局loading</button>
@@ -50,7 +55,7 @@ export default {
                 ok: {
                     label: '确定',
                     handler(e){
-                        console.log('alert - 点击了确定');
+                        console.log('alert - 点击了确定',e);
                     }
                 },
                 beforeOpen(e){
@@ -58,6 +63,31 @@ export default {
                 },
                 beforeClose(e){
                     console.log('alert beforeClose',e);
+                }
+            })
+        },
+        onConfirm(){
+            this.$confirm({
+                inforType: this.inforType,
+                tip: 'confirm提示文案',
+                desc: '一系列的信息描述，可能会很长。也可以是很短同样也可以带标点。',
+                ok: {
+                    label: '确定',
+                    handler(e){
+                        console.log('confirm - 点击了确定');
+                    }
+                },
+                cancel: {
+                    label: '取消',
+                    handler(e){
+                        console.log('点击了取消',e);
+                    }
+                },
+                beforeOpen(e){
+                    console.log('confirm beforeOpen',e);
+                },
+                beforeClose(e){
+                    console.log('confirm beforeClose',e);
                 }
             })
         },

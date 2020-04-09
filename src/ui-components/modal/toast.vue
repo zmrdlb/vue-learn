@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import {generateId} from '@/lib/util/uid'
+import {generateId} from '@lib/util/uid'
 
 export default {
     name: 'ui-modal-toast',

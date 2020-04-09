@@ -2,6 +2,21 @@ import isFunction from 'lodash/isFunction'
 
 export default {
     /**
+     * 基本弹层 mixin
+     * @type {Object}
+     */
+    modalMixin: {
+        methods: {
+            show(params){
+                this.$modal.show(this.modalName,params);
+            },
+            // 关闭弹层。弹层也会被销毁
+            close(){
+                this.$modal.hide(this.modalName);
+            }
+        }
+    },
+    /**
      * 信息弹层 mixin
      * @type {Object}
      */

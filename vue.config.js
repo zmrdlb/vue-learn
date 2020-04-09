@@ -20,5 +20,15 @@ module.exports = {
           path.resolve(__dirname, 'src/theme/util.less')
       ]
     }
+  },
+
+  configureWebpack: {
+      resolve: {
+          alias: {
+              "@ui-comp": path.resolve(__dirname,"src/ui-components"),
+              "@lib": path.resolve(__dirname,"src/lib"),
+              "@comp": path.resolve(__dirname,"src/components")
+          }
+      }
   }
 }

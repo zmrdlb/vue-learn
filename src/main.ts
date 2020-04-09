@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import ModalPlugin from "./ui-comp/modal/plugin";
+import ModalPlugin from "./ui-components/modal/plugin";
 
 Vue.config.productionTip = false
 
