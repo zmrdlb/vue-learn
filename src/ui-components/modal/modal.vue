@@ -20,64 +20,95 @@
     </modal>
 </template>
 
-<script>
+<script lang="ts">
 
-import modalMixin from './modal-mixin'
+import { Component, Prop, Vue, Mixins } from 'vue-property-decorator'
+import { ModalMixin } from './modal-mixin'
+import { ModalParams, ModalEvtHandlerParamsE } from "./modal-d"
 
-export default {
-    name: 'ui-modal',
-    props: {
-        // vue-js-modal 属性
-        modalName: {
-            type: String,
-            required: true
-        },
-        modalClasses: {
-            type: [String, Array],
-            default: ''
-        },
-        modalWidth: {
-            type: String,
-            default: '100%'
-        },
-        modalHeight: {
-            type: String,
-            default: 'auto'
-        },
-        // 自定义 modal 属性
-        hasTitle: {
-            type: Boolean,
-            default: false
-        },
-        hasFooter: {
-            type: Boolean,
-            default: false
-        },
-        classes: {
-            type: [String, Array],
-            default: ''
-        }
-    },
-    data(){
-        return {
-            params: {}
-        }
-    },
-    mixins: [modalMixin.modalMixin],
-    methods: {
-        onClose(){
-            this.close();
-        },
-        onBeforeOpen: function(e){
-            this.params = e.params;
-            this.$emit('before-open',e);
-        },
-        onBeforeClose: function(e){
-            this.params = {};
-            this.$emit('before-close',e);
-        }
+@Component
+export default class UiModal extends Mixins(ModalMixin) {
+    // vue-js-modal 属性
+    @Prop({type: String, required: true}) readonly modalName!: string
+    @Prop({default: ''}) readonly modalClasses!: string | string[]
+    @Prop({type: String, default: '100%'}) readonly modalWidth!: string
+    @Prop({type: String, default: 'auto'}) readonly modalHeight!: string
+    // 自定义 modal 属性
+    @Prop({type: Boolean, default: false}) readonly hasTitle!: boolean
+    @Prop({type: Boolean, default: false}) readonly hasFooter!: boolean
+    @Prop({type: [String, Array], default: ''}) readonly classes!: string | string[]
+
+    // data
+    private params: ModalParams = {}
+
+    // methods
+    onClose(){
+        this.close();
+    }
+    onBeforeOpen(e: ModalEvtHandlerParamsE){
+        this.params = e.params;
+        this.$emit('before-open',e);
+    }
+    onBeforeClose(e: ModalEvtHandlerParamsE){
+        this.params = {};
+        this.$emit('before-close',e);
     }
 }
+
+// export default {
+//     name: 'ui-modal',
+//     props: {
+//         // vue-js-modal 属性
+//         modalName: {
+//             type: String,
+//             required: true
+//         },
+//         modalClasses: {
+//             type: [String, Array],
+//             default: ''
+//         },
+//         modalWidth: {
+//             type: String,
+//             default: '100%'
+//         },
+//         modalHeight: {
+//             type: String,
+//             default: 'auto'
+//         },
+//         // 自定义 modal 属性
+//         hasTitle: {
+//             type: Boolean,
+//             default: false
+//         },
+//         hasFooter: {
+//             type: Boolean,
+//             default: false
+//         },
+//         classes: {
+//             type: [String, Array],
+//             default: ''
+//         }
+//     },
+//     data(){
+//         return {
+//             params: {}
+//         }
+//     },
+//     mixins: [modalMixin.modalMixin],
+//     methods: {
+//         onClose(){
+//             this.close();
+//         },
+//         onBeforeOpen: function(e){
+//             this.params = e.params;
+//             this.$emit('before-open',e);
+//         },
+//         onBeforeClose: function(e){
+//             this.params = {};
+//             this.$emit('before-close',e);
+//         }
+//     }
+// }
 </script>
 
 <style lang="less">

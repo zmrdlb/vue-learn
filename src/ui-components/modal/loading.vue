@@ -8,74 +8,149 @@
     </transition-group>
 </template>
 
-<script>
-import WorkerController from '@lib/pattern/worker-controller'
+<script lang="ts">
+import WorkerController, { Worker } from '@lib/pattern/worker-controller'
 import {generateId} from '@lib/util/uid'
+import { Component, Vue } from 'vue-property-decorator'
 
-export default {
-    name: 'ui-modal-loading',
-    data(){
-        return {
-            loadings: []
+interface LoadingInstance {
+    id: string;
+}
+
+class WorkerLoading extends Worker {
+    loading?: LoadingInstance | null
+    timer: number | null = null
+
+    constructor(){
+        super()
+    }
+}
+
+@Component
+export default class UiLoading extends Vue {
+    // data
+    private loadings: LoadingInstance[] = []
+    private workerController: WorkerController = new WorkerController()
+
+    // created(){
+    //     this.workerController = new WorkerController();
+    // }
+
+    /**
+     * 创建 loading
+     * @param  {[type]} worker [description]
+     * @return {[type]}        [description]
+     */
+    _createLoading(worker: WorkerLoading){
+        worker.loading = {
+            id: generateId()
         }
-    },
-    created(){
-        this.workerController = new WorkerController();
-    },
-    methods: {
-        /**
-         * 创建 loading
-         * @param  {[type]} worker [description]
-         * @return {[type]}        [description]
-         */
-        _createLoading(worker){
-            worker.loading = {
-                id: generateId()
+        this.loadings.push(worker.loading)
+    }
+    /**
+     * 超过 200ms 才会显示 loading
+     * @param  {[type]} worker [description]
+     * @return {[type]}        [description]
+     */
+    _initLoading(worker: WorkerLoading){
+        worker.timer = setTimeout(() => {
+            worker.timer = null;
+            this._createLoading(worker);
+        },200)
+    }
+    /**
+     * 显示全局 loading
+     * @return {[type]} [description]
+     */
+    show(){
+        this._initLoading(this.workerController.get() as WorkerLoading)
+    }
+    /**
+     * 隐藏全局 loading
+     * @return {[type]} [description]
+     */
+    hide(){
+        var worker = this.workerController.end();
+        if(worker){
+            if((worker as WorkerLoading).timer){
+                clearTimeout((worker as WorkerLoading).timer as number);
+                (worker as WorkerLoading).timer = null;
             }
-            this.loadings.push(worker.loading)
-        },
-        /**
-         * 超过 200ms 才会显示 loading
-         * @param  {[type]} worker [description]
-         * @return {[type]}        [description]
-         */
-        _initLoading(worker){
-            worker.timer = setTimeout(() => {
-                worker.timer = null;
-                this._createLoading(worker);
-            },200)
-        },
-        /**
-         * 显示全局 loading
-         * @return {[type]} [description]
-         */
-        show(){
-            this._initLoading(this.workerController.get())
-        },
-        /**
-         * 隐藏全局 loading
-         * @return {[type]} [description]
-         */
-        hide(){
-            var worker = this.workerController.end();
-            if(worker){
-                if(worker.timer){
-                    clearTimeout(worker.timer);
-                    worker.timer = null;
-                }
 
-                if(worker.loading){
-                    let index = this.loadings.findIndex(loading => loading.id === worker.loading.id)
-                    if (index !== -1) {
-                        this.loadings.splice(index,1)
-                    }
-                    worker.loading = null;
+            if((worker as WorkerLoading).loading){
+                let index = this.loadings.findIndex(loading => loading.id === (worker as WorkerLoading).loading!.id)
+                if (index !== -1) {
+                    this.loadings.splice(index,1)
                 }
+                (worker as WorkerLoading).loading = null;
             }
         }
     }
-
 }
+// export default {
+//     name: 'ui-modal-loading',
+//     data(){
+//         return {
+//             loadings: []
+//         }
+//     },
+//     created(){
+//         this.workerController = new WorkerController();
+//     },
+//     methods: {
+//         /**
+//          * 创建 loading
+//          * @param  {[type]} worker [description]
+//          * @return {[type]}        [description]
+//          */
+//         _createLoading(worker){
+//             worker.loading = {
+//                 id: generateId()
+//             }
+//             this.loadings.push(worker.loading)
+//         },
+//         /**
+//          * 超过 200ms 才会显示 loading
+//          * @param  {[type]} worker [description]
+//          * @return {[type]}        [description]
+//          */
+//         _initLoading(worker){
+//             worker.timer = setTimeout(() => {
+//                 worker.timer = null;
+//                 this._createLoading(worker);
+//             },200)
+//         },
+//         /**
+//          * 显示全局 loading
+//          * @return {[type]} [description]
+//          */
+//         show(){
+//             this._initLoading(this.workerController.get())
+//         },
+//         /**
+//          * 隐藏全局 loading
+//          * @return {[type]} [description]
+//          */
+//         hide(){
+//             var worker = this.workerController.end();
+//             if(worker){
+//                 if(worker.timer){
+//                     clearTimeout(worker.timer);
+//                     worker.timer = null;
+//                 }
+//
+//                 if(worker.loading){
+//                     let index = this.loadings.findIndex(loading => loading.id === worker.loading.id)
+//                     if (index !== -1) {
+//                         this.loadings.splice(index,1)
+//                     }
+//                     worker.loading = null;
+//                 }
+//             }
+//         }
+//     }
+//
+// }
 </script>
 
 <style lang="less">

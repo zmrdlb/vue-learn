@@ -9,37 +9,68 @@
     </transition-group>
 </template>
 
-<script>
+<script lang="ts">
 import {generateId} from '@lib/util/uid'
+import { Component, Vue } from 'vue-property-decorator'
 
-export default {
-    name: 'ui-modal-toast',
-    data(){
-        return {
-            toasts: []
+interface ToastInstance {
+    id: string;
+    msg: string;
+}
+
+@Component
+export default class UiToast extends Vue {
+    // data
+    private toasts: ToastInstance[] = []
+
+    show(msg: string){
+        if(!msg){
+            return
         }
-    },
-    methods: {
-        show(msg){
-            if(!msg){
-                return
+
+        let id = generateId();
+        this.toasts.push({
+            id,
+            msg
+        })
+
+        setTimeout(() => {
+            let index = this.toasts.findIndex(toast => toast.id === id)
+            if (index !== -1) {
+                this.toasts.splice(index,1)
             }
-
-            let id = generateId();
-            this.toasts.push({
-                id,
-                msg
-            })
-
-            setTimeout(() => {
-                let index = this.toasts.findIndex(toast => toast.id === id)
-                if (index !== -1) {
-                    this.toasts.splice(index,1)
-                }
-            },2000);
-        }
+        },2000);
     }
 }
+
+// export default {
+//     name: 'ui-modal-toast',
+//     data(){
+//         return {
+//             toasts: []
+//         }
+//     },
+//     methods: {
+//         show(msg){
+//             if(!msg){
+//                 return
+//             }
+//
+//             let id = generateId();
+//             this.toasts.push({
+//                 id,
+//                 msg
+//             })
+//
+//             setTimeout(() => {
+//                 let index = this.toasts.findIndex(toast => toast.id === id)
+//                 if (index !== -1) {
+//                     this.toasts.splice(index,1)
+//                 }
+//             },2000);
+//         }
+//     }
+// }
 </script>
 
 <style lang="less">

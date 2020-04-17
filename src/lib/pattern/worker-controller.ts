@@ -7,6 +7,7 @@
  * */
 
  class Worker{
+     lock: boolean
      /**
       * 一个线程
       */
@@ -16,6 +17,7 @@
  }
 
  class WorkerControl {
+     private _workerobjs: Worker[]
      /**
       * 线程池控制器类
       * @return {[type]} [description]
@@ -27,7 +29,7 @@
       * 返回当前空闲的workerControl对象
       * @return {[type]} [description]
       */
-     get(){
+     get(): Worker{
          var curworker = null;
          for(var i = 0, len = this._workerobjs.length; i < len; i++){
              if(this._workerobjs[i].lock == false){ //既无请求又没有被锁定
@@ -44,10 +46,10 @@
      }
      /**
       * 通知当前workerControl对象已经使用完毕
-      * @param {instance of workerControl} worker 如果提供了worker，则结束此线程；如果没提供，则结束第一个正在使用的线程
-      * @return {instance of workerControl | null} 当前结束的线程对象.没有则为null
+      * @param {instance of Worker} [worker] 如果提供了worker，则结束此线程；如果没提供，则结束第一个正在使用的线程
+      * @return {instance of Worker | null} 当前结束的线程对象.没有则为null
       */
-     end(worker){
+     end(worker?: Worker): Worker | null {
          var curworker = null;
          for(var i = 0, len = this._workerobjs.length; i < len; i++){
              if(worker){
@@ -70,7 +72,7 @@
       * 是否所有的线程都被使用完毕
       * @return {Boolean} true：所有线程都空闲
       */
-     isend(){
+     isend(): boolean{
          var result = true;
          for(var i = 0, len = this._workerobjs.length; i < len; i++){
              if(this._workerobjs[i].lock == true){ //既无请求又没有被锁定
@@ -82,4 +84,5 @@
      }
  }
 
-export default WorkerControl;
+export { Worker }
+export default WorkerControl

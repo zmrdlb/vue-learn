@@ -24,46 +24,77 @@
     </ui-modal>
 </template>
 
-<script>
+<script lang="ts">
 
 import isFunction from 'lodash/isFunction'
 import extend from 'extend'
-import modalMixin from './modal-mixin'
 import UiModal from './modal.vue'
+import { Component, Vue, Mixins } from 'vue-property-decorator'
+import { ModalMixin, InforModalMixin} from './modal-mixin'
+import { AlertParams } from "./modal-d"
 
-const modalName = 'ui-modal-alert';
-
-export default {
-    name: modalName,
-    data(){
-        return {
-            params: {}
-        }
-    },
-    mixins: [modalMixin.modalMixin,modalMixin.inforModalMixin],
+@Component({
     components: {
         UiModal
-    },
-    computed: {
-        ok(){
-            return extend({
-                label: '确定',
-                handler: null
-            },this.params.ok)
-        }
-    },
-    created(){
-        this.modalName = modalName;
-    },
-    methods: {
-        // 点击确定按钮
-        onOk(e){
-            if(isFunction(this.ok.handler)){
-                this.ok.handler(e);
-            }
-            this.close();
-        }
     }
+})
+export default class UiAlert extends Mixins(ModalMixin,InforModalMixin) {
+    // data
+    protected params: AlertParams = {}
+
+    // computed
+    get ok(){
+        return extend({
+            label: '确定',
+            handler: null
+        },this.params.ok)
+    }
+
+    created(){
+        this.modalName = 'ui-modal-alert';
+    }
+
+    // 点击确定按钮
+    onOk(e: object){
+        if(isFunction(this.ok.handler)){
+            this.ok.handler(e);
+        }
+        this.close();
+    }
+
 }
+
+// export default {
+//     name: modalName,
+//     data(){
+//         return {
+//             params: {}
+//         }
+//     },
+//     mixins: [modalMixin.modalMixin,modalMixin.inforModalMixin],
+//     components: {
+//         UiModal
+//     },
+//     computed: {
+//         ok(){
+//             return extend({
+//                 label: '确定',
+//                 handler: null
+//             },this.params.ok)
+//         }
+//     },
+//     created(){
+//         this.modalName = modalName;
+//     },
+//     methods: {
+//         // 点击确定按钮
+//         onOk(e){
+//             if(isFunction(this.ok.handler)){
+//                 this.ok.handler(e);
+//             }
+//             this.close();
+//         }
+//     }
+// }
 
 </script>

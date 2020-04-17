@@ -18,7 +18,10 @@
     "paths": {
       "@/*": [
         "src/*"
-      ]
+      ],
+      "@ui-comp/*": ["src/ui-components/*"],
+      "@lib/*": ["src/lib/*"],
+      "@comp/*": ["src/components/*"]
     },
     "lib": [
       "esnext",
