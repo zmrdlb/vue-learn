@@ -162,7 +162,7 @@ export default class UiLoading extends Vue {
          bottom: 0;
          z-index: 999;
          background: rgba(255,255,255,0.5) url('images/loader-circle.svg') no-repeat center;
-         .lib-px-to-rem(background-size,40,40);
+         background-size: 40px 40px;
     }
 
     .loading-fade-enter,.loading-fade-leave-to {

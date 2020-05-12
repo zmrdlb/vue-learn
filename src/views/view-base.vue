@@ -18,8 +18,8 @@ export default {
     text-align: center;
 
     .logo {
-        .lib-px-to-rem(width,60);
-        .lib-px-to-rem(height,60);
+        width: 60px;
+        height: 60px;
     }
 }
 </style>

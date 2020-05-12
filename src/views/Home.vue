@@ -84,8 +84,8 @@ export default class Home extends Vue {
 <style lang="less" module>
     .home-root {
         .router-list {
-            .lib-px-to-rem(padding-top,10);
-            .lib-px-to-rem(padding-bottom,10);
+            padding-top: 10px;
+            padding-bottom: 10px;
         }
     }
 </style>

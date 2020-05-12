@@ -82,7 +82,7 @@ export default class UiToast extends Vue {
         max-width: 400px;
         @font-ruleset();
         .head-three(@color-white);
-        .lib-px-to-rem(padding,4,16);
+        padding: 4px 16px;
         background: @color-gray5;
         border-radius: @border-radius;
         .lib-break-line-all-word();

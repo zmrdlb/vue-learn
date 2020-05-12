@@ -16,7 +16,7 @@ export default {
 <style lang="less" module>
   .head {
       color: green;
-      .lib-px-to-rem(font-size,32);
+      font-size: 32px;
       text-align: center;
   }
 </style>

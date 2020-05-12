@@ -130,8 +130,8 @@ export default class UiModal extends Mixins(ModalMixin) {
 
         & > .title {
             flex: none;
-            .lib-px-to-rem(line-height,40);
-            .lib-px-to-rem(padding,0,20);
+            line-height: 40px;
+            padding: 0 20px;
             background: @color-gray14;
 
             .lib-clearfix();
@@ -139,25 +139,25 @@ export default class UiModal extends Mixins(ModalMixin) {
             .close {
                 float: right;
                 color: @color-gray15;
-                .lib-px-to-rem(margin-left,20);
                 line-height: inherit;
-                .lib-px-to-rem(margin-right,-16);
+                margin-left: 20px;
+                margin-right: -16px;
             }
         }
 
         & > .body {
             overflow-y: auto;
-            .lib-px-to-rem(padding,20);
+            padding: 20px;
         }
 
         & > .footer {
             flex: none;
-            .lib-px-to-rem(padding,4,20,24);
+            padding: 4px 20px 24px;
             .lib-clearfix();
 
             button {
                  float: right;
-                 .lib-px-to-rem(margin-right,5);
+                 margin-right: 5px;
 
                  &:first-child {
                      margin-right: 0;
@@ -189,14 +189,14 @@ export default class UiModal extends Mixins(ModalMixin) {
             }
 
             .right {
-                .lib-px-to-rem(margin-left,60);
+                margin-left: 60px
             }
 
             .type-icon {
                 display: inline-block;
                 vertical-align: middle;
-                .lib-px-to-rem(width,45);
-                .lib-px-to-rem(height,45);
+                width: 45px;
+                height: 45px;
                 background: @color-white url("images/icons_message90*90@2x.png") no-repeat;
                 background-size: 500% 100%;
 
@@ -205,26 +205,26 @@ export default class UiModal extends Mixins(ModalMixin) {
                 }
 
                 &.infor {
-                    .lib-px-to-rem(background-position,-45,0);
+                    background-position: -45px 0;
                 }
 
                 &.fail {
-                    .lib-px-to-rem(background-position,-90,0);
+                    background-position: -90px 0;
                 }
 
                 &.warning {
-                    .lib-px-to-rem(background-position,-135,0);
+                    background-position: -135px 0;
                 }
 
                 &.ask {
-                    .lib-px-to-rem(background-position,-180,0);
+                    background-position: -180px 0;
                 }
             }
 
             .tip-title {
                 .head-three();
-                .lib-px-to-rem(margin-bottom,2);
-                .lib-px-to-rem(margin-top,-4);
+                margin-bottom: 2px;
+                margin-top: -4px;
             }
 
             .tip-content {
@@ -234,7 +234,7 @@ export default class UiModal extends Mixins(ModalMixin) {
         }
     }
 
-    .g-modal-infor {
+    .g-modal-infor, .use-px {
         .lib-responsive-pc({
             width: 400px;
         })

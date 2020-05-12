@@ -20,22 +20,23 @@
         methods: {
             responsive(){
                 let resizeEvtName = 'onorientationchange' in window? 'orientationchange': 'resize',
-                    baseFontSize = 20,
+                    baseFontSize = 16,
                     baseViewWidth = 375,
+                    minViewWidth = 320,
                     maxViewWidth = 768;
 
                 function setHTMLFontSize(){
-                    let width = baseFontSize,
-                        viewWidth = window.innerWidth;
+                    let viewWidth = window.innerWidth;
+                    viewWidth = Math.max(minViewWidth,Math.min(viewWidth,maxViewWidth));
 
-                    if(viewWidth > baseViewWidth && viewWidth < maxViewWidth){
-                        width = Math.floor((viewWidth / baseViewWidth) * baseFontSize);
-                    }
+                    let rootFontSize = Math.floor((viewWidth / baseViewWidth) * baseFontSize);
 
-                    document.documentElement.style.fontSize = width + 'px';
+                    document.documentElement.style.fontSize = rootFontSize + 'px';
                 }
 
                 window.addEventListener(resizeEvtName, debounce(setHTMLFontSize,300))
+
+                setHTMLFontSize();
             }
         }
     }
@@ -45,7 +46,7 @@
 @import "./theme/index.less";
 
 .app {
-    .lib-px-to-rem(padding-left,10);
-    .lib-px-to-rem(padding-right,10);
+    padding-left: 10px;
+    padding-right: 10px;
 }
 </style>
