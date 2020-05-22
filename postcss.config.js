@@ -5,9 +5,13 @@ module.exports = ({env}) => {
 
     return {
         plugins: [
+            // https://github.com/csstools/postcss-preset-env
+            require('postcss-preset-env'),
+
+            // postcss-preset-env 已经包含了 autoprefixer，所以不需要再添加了
             // vue-cli 本来默认开启了 autoprefixer。但 postcss.config.js 会覆盖默认设置，则此处重新加上。
-            require('autoprefixer'),
-            
+            // require('autoprefixer'),
+
             // 将 px 转换成 rem
             // 设置了不进行转换的属性和选择器。如果在这些条件下有些例外，则调用 less function: .lib-px-to-rem(...) 进行手动转换
             require('postcss-pxtorem')({

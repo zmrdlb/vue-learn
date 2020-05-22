@@ -25,14 +25,9 @@
  /*折行*/
  .lib-break-line() {
    white-space: normal;
-   word-wrap: break-word;
-   word-break: break-all;
+   overflow-wrap: break-word;
  }
-
- .lib-break-line-all-word() {
-   white-space: normal;
-   word-wrap: break-word;
- }
+ 
  /*多行超出显示省略号——css3——webkit内核支持*/
  .lib-multi-ellipsis(@line:1) {
    overflow: hidden;
