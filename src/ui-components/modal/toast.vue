@@ -85,7 +85,7 @@ export default class UiToast extends Vue {
         padding: 4px 16px;
         background: @color-gray5;
         border-radius: @border-radius;
-        .lib-break-line-all-word();
+        .lib-break-line();
 
         .lib-responsive-pc({
             max-width: 700px;

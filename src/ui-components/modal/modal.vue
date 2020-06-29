@@ -229,7 +229,7 @@ export default class UiModal extends Mixins(ModalMixin) {
 
             .tip-content {
                 .tip();
-                .lib-break-line-all-word();
+                .lib-break-line();
             }
         }
     }

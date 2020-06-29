@@ -1,89 +1,49 @@
 <template>
-    <transition-group name="loading-fade" tag="div">
-        <div class="g-modal-loading"
-            v-for="loading in loadings"
-            :key="loading.id"
-        >
-        </div>
-    </transition-group>
+    <transition name="loading-fade">
+        <div class="g-modal-loading" v-if="showLoading"></div>
+    </transition>
 </template>
 
 <script lang="ts">
-import WorkerController, { Worker } from '@lib/pattern/worker-controller'
-import {generateId} from '@lib/util/uid'
 import { Component, Vue } from 'vue-property-decorator'
 
-interface LoadingInstance {
-    id: string;
-}
+/**
+ * 应用场景：实际开发中，可能同时出现多个异步请求。当请求发起时，显示 loading。当所有请求都完成后，loading 才隐藏。
+ * 验收标准：但无论有多少请求，界面应当只显示一个 loading。所有请求都完成后，loading 才隐藏。
+ * 组件使用：本组件内部控制了 loading 的显示。开发人员无需自己实现此逻辑，直接对于每个请求都调用一次 show 和 hide 即可。
+ */
 
-class WorkerLoading extends Worker {
-    loading?: LoadingInstance | null
-    timer: number | null = null
-
-    constructor(){
-        super()
-    }
-}
+var loadingCount: number = 0; // 当前请求要显示的 loading 数量。
 
 @Component
 export default class UiLoading extends Vue {
     // data
-    private loadings: LoadingInstance[] = []
-    private workerController: WorkerController = new WorkerController()
-
-    // created(){
-    //     this.workerController = new WorkerController();
-    // }
+    private showLoading: boolean = false
+    // 因为 ts 的类型检测原因，无需监听且不是用作 data 的数据，也只能暂时写到这里，无法写到 created 中
+    private timer: number | null = null
 
     /**
-     * 创建 loading
-     * @param  {[type]} worker [description]
-     * @return {[type]}        [description]
-     */
-    _createLoading(worker: WorkerLoading){
-        worker.loading = {
-            id: generateId()
-        }
-        this.loadings.push(worker.loading)
-    }
-    /**
-     * 超过 200ms 才会显示 loading
-     * @param  {[type]} worker [description]
-     * @return {[type]}        [description]
-     */
-    _initLoading(worker: WorkerLoading){
-        worker.timer = setTimeout(() => {
-            worker.timer = null;
-            this._createLoading(worker);
-        },200)
-    }
-    /**
-     * 显示全局 loading
+     * 显示全局 loading，且超过 200ms 才会显示
      * @return {[type]} [description]
      */
     show(){
-        this._initLoading(this.workerController.get() as WorkerLoading)
+        loadingCount++;
+        if(!this.showLoading){
+            this.timer = setTimeout(() => {
+                this.timer = null;
+                this.showLoading = true;
+            },200)
+        }
     }
     /**
      * 隐藏全局 loading
      * @return {[type]} [description]
      */
     hide(){
-        var worker = this.workerController.end();
-        if(worker){
-            if((worker as WorkerLoading).timer){
-                clearTimeout((worker as WorkerLoading).timer as number);
-                (worker as WorkerLoading).timer = null;
-            }
-
-            if((worker as WorkerLoading).loading){
-                let index = this.loadings.findIndex(loading => loading.id === (worker as WorkerLoading).loading!.id)
-                if (index !== -1) {
-                    this.loadings.splice(index,1)
-                }
-                (worker as WorkerLoading).loading = null;
-            }
+        loadingCount > 0 && loadingCount--;
+        if(!loadingCount){
+            this.showLoading = false;
+            this.timer && clearTimeout(this.timer);
         }
     }
 }
