@@ -13,14 +13,13 @@ import { Component, Vue } from 'vue-property-decorator'
  * 组件使用：本组件内部控制了 loading 的显示。开发人员无需自己实现此逻辑，直接对于每个请求都调用一次 show 和 hide 即可。
  */
 
-var loadingCount: number = 0; // 当前请求要显示的 loading 数量。
+let loadingCount: number = 0, // 当前要显示的 loading 数量。
+    timer: number | null = null; // 延迟显示 loading 计时器
 
 @Component
 export default class UiLoading extends Vue {
     // data
     private showLoading: boolean = false
-    // 因为 ts 的类型检测原因，无需监听且不是用作 data 的数据，也只能暂时写到这里，无法写到 created 中
-    private timer: number | null = null
 
     /**
      * 显示全局 loading，且超过 200ms 才会显示
@@ -29,8 +28,8 @@ export default class UiLoading extends Vue {
     show(){
         loadingCount++;
         if(!this.showLoading){
-            this.timer = setTimeout(() => {
-                this.timer = null;
+            timer = setTimeout(() => {
+                timer = null;
                 this.showLoading = true;
             },200)
         }
@@ -43,7 +42,7 @@ export default class UiLoading extends Vue {
         loadingCount > 0 && loadingCount--;
         if(!loadingCount){
             this.showLoading = false;
-            this.timer && clearTimeout(this.timer);
+            timer && clearTimeout(timer) || (timer = null);
         }
     }
 }
