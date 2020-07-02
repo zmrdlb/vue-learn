@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    import debounce from "lodash/debounce";
+    import _ from "lodash";
     import UiModalIndex from "@ui-comp/modal/index.vue";
 
     export default {
@@ -34,7 +34,7 @@
                     document.documentElement.style.fontSize = rootFontSize + 'px';
                 }
 
-                window.addEventListener(resizeEvtName, debounce(setHTMLFontSize,300))
+                window.addEventListener(resizeEvtName, _.debounce(setHTMLFontSize,300))
 
                 setHTMLFontSize();
             }

@@ -1,4 +1,4 @@
-import isFunction from 'lodash/isFunction'
+import _ from 'lodash'
 import { Component, Vue, Mixins } from 'vue-property-decorator'
 import { ModalParams, ModalEvtHandlerParamsE } from "./modal-d"
 
@@ -28,12 +28,12 @@ export class InforModalMixin extends Vue {
 
     onBeforeOpen(e: ModalEvtHandlerParamsE){
         this.params = e.params;
-        if(isFunction(this.params.beforeOpen)){
+        if(_.isFunction(this.params.beforeOpen)){
             this.params.beforeOpen(e);
         }
     }
     onBeforeClose(e: ModalEvtHandlerParamsE){
-        if(isFunction(this.params.beforeClose)){
+        if(_.isFunction(this.params.beforeClose)){
             this.params.beforeClose(e);
         }
         this.params = {}

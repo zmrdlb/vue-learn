@@ -27,7 +27,7 @@
 
 <script lang="ts">
 
-import isFunction from 'lodash/isFunction'
+import _ from 'lodash'
 import extend from 'extend'
 import UiModal from './modal.vue'
 import { Component, Vue, Mixins } from 'vue-property-decorator'
@@ -64,7 +64,7 @@ export default class UiConfirm extends Mixins(ModalMixin,InforModalMixin) {
 
     // 点击确定按钮
     onOk(e: object){
-        if(isFunction(this.ok.handler)){
+        if(_.isFunction(this.ok.handler)){
             this.ok.handler(e);
         }
         this.close();
@@ -72,7 +72,7 @@ export default class UiConfirm extends Mixins(ModalMixin,InforModalMixin) {
 
     // 点击取消按钮
     onCancel(e: object){
-        if(isFunction(this.cancel.handler)){
+        if(_.isFunction(this.cancel.handler)){
             this.cancel.handler(e);
         }
         this.close();

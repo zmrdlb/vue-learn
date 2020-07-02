@@ -26,7 +26,7 @@
 
 <script lang="ts">
 
-import isFunction from 'lodash/isFunction'
+import _ from 'lodash'
 import extend from 'extend'
 import UiModal from './modal.vue'
 import { Component, Vue, Mixins } from 'vue-property-decorator'
@@ -56,7 +56,7 @@ export default class UiAlert extends Mixins(ModalMixin,InforModalMixin) {
 
     // 点击确定按钮
     onOk(e: object){
-        if(isFunction(this.ok.handler)){
+        if(_.isFunction(this.ok.handler)){
             this.ok.handler(e);
         }
         this.close();

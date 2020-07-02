@@ -1,4 +1,5 @@
 const path = require('path');
+const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 
 module.exports = {
   lintOnSave: false,
@@ -30,5 +31,12 @@ module.exports = {
               "@comp": path.resolve(__dirname,"src/components")
           }
       }
+  },
+
+  chainWebpack: (config) => {
+     if (process.env.NODE_ENV === "production") {
+         console.log('使用LodashModuleReplacementPlugin')
+         config.plugin("loadshReplace").use(new LodashModuleReplacementPlugin());
+     }
   }
 }
