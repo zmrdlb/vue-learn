@@ -27,8 +27,8 @@
 
                 function setHTMLFontSize(){
                     let viewWidth = window.innerWidth;
-                    viewWidth = Math.max(minViewWidth,Math.min(viewWidth,maxViewWidth));
-
+                    // >= 768px 则认为是 px 端，采用 375px 下的尺寸。
+                    viewWidth = viewWidth > maxViewWidth? baseViewWidth: Math.max(minViewWidth,viewWidth);
                     let rootFontSize = Math.floor((viewWidth / baseViewWidth) * baseFontSize);
 
                     document.documentElement.style.fontSize = rootFontSize + 'px';

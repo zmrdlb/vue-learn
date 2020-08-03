@@ -120,7 +120,7 @@ export default class UiModal extends Mixins(ModalMixin) {
         background-color: @color-white;
         border-radius: @border-radius;
         box-shadow: @box-shadow2;
-        width: 90%;
+        width: 85%;
         min-width: 0;
         max-width: 700px;
         margin-left: auto;
@@ -177,7 +177,7 @@ export default class UiModal extends Mixins(ModalMixin) {
     /**
      * 信息弹层。用于 alert, confirm
      */
-    .g-modal-infor {
+    .g-modal.g-modal-infor {
         max-width: 400px;
 
         & > .body {
@@ -234,7 +234,7 @@ export default class UiModal extends Mixins(ModalMixin) {
         }
     }
 
-    .g-modal-infor, .use-px {
+    .g-modal.g-modal-infor {
         .lib-responsive-pc({
             width: 400px;
         })
