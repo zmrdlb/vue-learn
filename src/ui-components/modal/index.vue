@@ -48,9 +48,8 @@ export default {
              * @param  {Object} params  Alert params
              * 可传的格式如下：(均可选)
              * {
-             *   inforType: 'infor',
-                 tip: 'alert提示信息',
-                 desc: 'alert提示信息描述',
+             *   icon: 'infor',
+                 message: 'alert提示信息',
                  ok: {
                      label: '确定',
                      handler(e: object){
@@ -70,9 +69,8 @@ export default {
              * @param  {Object} params  Confirm params
              * 可传的格式如下：(均可选)
              * {
-             *   inforType: 'infor',
-                 tip: 'confirm提示信息',
-                 desc: 'confirm提示信息描述',
+             *   icon: 'infor',
+                 message: 'confirm提示信息',
                  ok: {
                      label: '确定',
                      handler(e: object){

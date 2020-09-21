@@ -49,9 +49,8 @@ export default {
          */
         onAlert(){
             this.$alert({
-                inforType: this.inforType,
-                tip: 'alert提示文案',
-                desc: '一系列的信息描述，可能会很长。也可以是很短同样也可以带标点。',
+                icon: this.inforType,
+                message: 'alert提示文案',
                 ok: {
                     label: '确定',
                     handler(e){
@@ -68,9 +67,8 @@ export default {
         },
         onConfirm(){
             this.$confirm({
-                inforType: this.inforType,
-                tip: 'confirm提示文案',
-                desc: '一系列的信息描述，可能会很长。也可以是很短同样也可以带标点。',
+                icon: this.inforType,
+                message: 'confirm提示文案',
                 ok: {
                     label: '确定',
                     handler(e){

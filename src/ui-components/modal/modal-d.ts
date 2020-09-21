@@ -21,10 +21,9 @@ export interface ModalParams {
     beforeClose?: ModalEvtHandler;
 }
 
-interface InforModalParams extends ModalParams {
-    inforType?: string;
-    tip?: string;
-    desc?: string;
+export interface InforModalParams extends ModalParams {
+    icon?: string;
+    message?: string;
 }
 
 interface InforModalBtnParams {

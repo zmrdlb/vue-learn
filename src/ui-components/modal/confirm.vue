@@ -3,18 +3,16 @@
         :modalName="modalName"
         :classes="['g-modal-infor']"
         :has-footer="true"
+        :has-title="true"
         @before-open="onBeforeOpen"
         @before-close="onBeforeClose">
         <template v-slot:body="{params}">
             <div class="left">
-                <div :class="['type-icon', params.inforType || 'infor']"></div>
+                <div :class="['icon', params.iconClass]"></div>
             </div>
             <div class="right">
-                <div class="tip-title" v-if="params.tip">
-                    {{params.tip}}
-                </div>
-                <div class="tip-content" v-if="params.desc">
-                    {{params.desc}}
+                <div class="message" v-if="params.message">
+                    {{params.message}}
                 </div>
             </div>
         </template>
@@ -31,7 +29,7 @@ import _ from 'lodash'
 import extend from 'extend'
 import UiModal from './modal.vue'
 import { Component, Vue, Mixins } from 'vue-property-decorator'
-import { ModalMixin, InforModalMixin } from './modal-mixin'
+import { InforModalMixin, iconMap } from './modal-mixin'
 import { ConfirmParams } from "./modal-d"
 
 @Component({
@@ -39,7 +37,7 @@ import { ConfirmParams } from "./modal-d"
         UiModal
     }
 })
-export default class UiConfirm extends Mixins(ModalMixin,InforModalMixin) {
+export default class UiConfirm extends Mixins(InforModalMixin) {
     // data
     protected params: ConfirmParams = {}
 

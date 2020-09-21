@@ -182,17 +182,18 @@ export default class UiModal extends Mixins(ModalMixin) {
 
         & > .body {
             @font-ruleset();
-            .lib-clearfix();
+            display: flex;
 
             .left {
-                float: left;
+                flex: none;
             }
 
             .right {
-                margin-left: 60px
+                margin-left: 15px;
+                align-self: center;
             }
 
-            .type-icon {
+            .icon {
                 display: inline-block;
                 vertical-align: middle;
                 width: 45px;
@@ -221,14 +222,7 @@ export default class UiModal extends Mixins(ModalMixin) {
                 }
             }
 
-            .tip-title {
-                .head-three();
-                margin-bottom: 2px;
-                margin-top: -4px;
-            }
-
-            .tip-content {
-                .tip();
+            .message {
                 .lib-break-line();
             }
         }

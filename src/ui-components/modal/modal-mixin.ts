@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { Component, Vue, Mixins } from 'vue-property-decorator'
-import { ModalParams, ModalEvtHandlerParamsE } from "./modal-d"
+import { ModalParams, InforModalParams, ModalEvtHandlerParamsE } from "./modal-d"
 
 /**
  * 基本弹层 mixin
@@ -22,9 +22,38 @@ export class ModalMixin extends Vue {
 /**
  * 信息弹层 mixin
  */
+
+type IconMap = {
+    [key: string | 'infor']: [string,string]
+}
+
+export const iconMap: IconMap = {
+     'infor': ['infor','提示'],
+     'warning': ['warning','警告'],
+     'success': ['success','成功'],
+     'fail': ['fail','失败'],
+     'ask': ['ask','询问']
+}
+
 @Component
 export class InforModalMixin extends Vue {
-    protected params!: ModalParams
+    protected modalName!: string
+    protected params!: InforModalParams
+
+    // 显示弹层
+    show(params: InforModalParams){
+        if(!params.icon){
+            params.icon = 'infor';
+        }
+        params.iconClass = iconMap[params.icon][0];
+        params.title = iconMap[params.icon][1];
+        this.$modal.show(this.modalName,params);
+    }
+
+    // 关闭弹层。弹层也会被销毁
+    close(){
+        this.$modal.hide(this.modalName);
+    }
 
     onBeforeOpen(e: ModalEvtHandlerParamsE){
         this.params = e.params;
